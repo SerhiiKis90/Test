@@ -1,14 +1,21 @@
 import {Component} from 'react';
 import React from 'react';
 
+const Item = ({list, question}) => {
 
-class Item extends Component {
-    render(){
-        return(
-            <h1>asd</h1>
-        )
-    }
+const listItems = list.map((i) => 
+	<label>
+		<input type="radio" value="option1"  />
+			{i}
+	</label>)
+	return(
+		<div>
+            <h2>{question}</h2>
+			
+				{listItems}
+				
+			
+		</div>
+		);
 }
-
-
 export default Item;
