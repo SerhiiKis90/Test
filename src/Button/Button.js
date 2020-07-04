@@ -1,12 +1,14 @@
-import {Component} from 'react';
+
 import React from 'react';
 
 
-const Button =({some, nextQuestion, counter}) => {
+const Button =({nextQuestion, count, answer}) => {
     return(
         <div>
-            <p>{counter}/5</p>
-            <button onClick={nextQuestion}>Продовжити</button>
+            <p>{count}/5</p>
+            <button 
+            onClick={() => this.setState({ count: this.state.count + 1 }), nextQuestion}
+            >Продовжити</button>
         </div>
      )
     }

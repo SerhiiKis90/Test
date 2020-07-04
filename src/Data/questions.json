@@ -2,7 +2,7 @@
     "question_1": {
       "question": "Як називається найбільш популярна снайперська гвинтівка у грі CS:GO?",
       "answers": ["SCAR-20", "AWP", "G3SG1", "SSG08"],
-      "correct_answers": ["OG"]
+      "correct_answers": ["AWP"]
     },
     "question_2": {
       "question": "Хто виграв головний турнір року по Dota 2 - The International 2019?",

@@ -1,21 +1,33 @@
-import {Component} from 'react';
-import React from 'react';
 
-const Item = ({list, question}) => {
+import React, { Component } from 'react';
 
-const listItems = list.map((i) => 
-	<label>
-		<input type="radio" value="option1"  />
-			{i}
-	</label>)
-	return(
-		<div>
-            <h2>{question}</h2>
-			
-				{listItems}
-				
-			
+
+
+class Item extends Component{
+	constructor(props) {
+		super(props)
+		this.state = {
+			answer:[],
+		}
+		this.addAnswer = this.addAnswer.bind(this);
+	  }
+	  addAnswer(event) {
+		this.props.updateData(event.target.value)
+	  }  
+	render(){
+		const listItems = this.props.list.map((i) => 
+			<div>
+				<label><input type="radio" id="male" name="gender" onChange={this.addAnswer} value={i} key={this.props.count} />{i}</label>
+			</div>	
+		)
+		return(
+			<div  > 
+            <h2  >{ this.props.question}</h2>
+			<form>
+				{listItems }
+			</form>		
 		</div>
 		);
-}
+	}
+} 
 export default Item;
