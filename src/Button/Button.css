@@ -1,0 +1,11 @@
+.buttonPart {
+    display:flex;
+    margin: 0;
+   display:flex;
+   justify-content: flex-end;
+}
+.counter {
+    margin-right:30px;
+    font-size:25px;
+}
+

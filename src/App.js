@@ -3,8 +3,11 @@ import { Component } from 'react';
 import './App.css';
 import Item from './Item/Item';
 import Header from './Header/Header';
-import Button from './Button/Button';
+import Btn from './Button/Button';
+import Result from './Result/Result';
 import jsonData from './Data/questions.json';
+
+ 
 
 class App extends Component {
   constructor() {
@@ -15,6 +18,7 @@ class App extends Component {
      count:1,
      answer: '',
      allAnswers: [],
+     data: ''
     }
   }
   updateData = (value) => {
@@ -30,43 +34,63 @@ if (this.state.count<5) {
   const answer = this.state.answer;
   let ert = this.state.allAnswers;
   ert.push(answer);
-  this.setState({allAnswers : ert})
+  this.setState({allAnswers : ert,answer:''})
 } else if (this.state.count===5){
   const answer = this.state.answer;
   let ert = this.state.allAnswers;
   ert.push(answer);
   this.setState({allAnswers : ert, count: this.state.count +1})
-  console.log(this.compare().length * 20)
 }
   }
-compare = () => {
-  const data = jsonData;
-  const goodInf = [];
 
+  onReset = () => {
+    this.setState({
+      list: jsonData.question_1.answers,
+      question: jsonData.question_1.question,
+      count:1,
+      answer: '',
+      allAnswers: [],
+      data: ''
+    })
+  }
+
+
+  compare = () => {
+    const data = jsonData;
+  const goodInf = [];
   for(let key in data) {
     goodInf.push(data[key].correct_answers[0])
   }
-  let result = [];
-  goodInf.forEach((e1)=>this.state.allAnswers.forEach((e2) =>
-  {if(e1===e2){
-    result.push(e1)
-  }}))
-  return result
-}
+let result = this.state.allAnswers.map(function(item, i){
+  return item === goodInf[i];
+});
+  let correctAnswers = 0;
+  for (let i=0;i<result.length;i++){
+    if(result[i]){correctAnswers++}
+  }
+ return(correctAnswers);
+  }
+
+
 addAnswers = () => {
   const answer = this.state.answer;
   let ert = this.state.allAnswers;
-  ert.push(answer);
+  ert.push(answer)
   this.setState({allAnswers : ert})
 }
   render(){
-    if(this.state.count==6) {
+    if(this.state.count===6) {
       return (
-      <h1>Ваш результат : {this.compare().length * 20}</h1>
+       <Result
+       count = {this.state.count}
+       compare={this.compare}
+       onReset = {this.onReset}
+       newCompare={this.newCompare}
+       />
       )
     }else {
     return(
-      <div>
+      <div className='app'>
       <Header/>
       <Item 
       list={this.state.list}
@@ -76,7 +100,7 @@ addAnswers = () => {
       nextQuestion={this.nextQuestion}
       updateData={this.updateData}
       />
-      <Button 
+      <Btn
       some={this.data}
       nextQuestion={this.nextQuestion}
       count={this.state.count}

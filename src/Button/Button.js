@@ -1,17 +1,22 @@
-
 import React from 'react';
+import './Button.css';
 
-
-const Button =({nextQuestion, count, answer}) => {
+const Btn =({nextQuestion, count, answer}) => {
+    
     return(
-        <div>
+        <div className='buttonPart'>
+            <div className='counter'>
             <p>{count}/5</p>
+            </div>
+            <div className='nextButton'>
             <button 
-            onClick={() => this.setState({ count: this.state.count + 1 }), nextQuestion}
+            className="btn btn-primary"
+            onClick={() => this.setState({ count: this.state.count + 1 }),nextQuestion}
             >Продовжити</button>
+            </div>
         </div>
      )
     }
 
 
-export default Button;
+export default Btn;

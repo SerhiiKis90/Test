@@ -1,5 +1,6 @@
 
 import React, { Component } from 'react';
+import './Item.css';
 
 
 
@@ -9,22 +10,26 @@ class Item extends Component{
 		this.state = {
 			answer:[],
 		}
+		
 		this.addAnswer = this.addAnswer.bind(this);
 	  }
 	  addAnswer(event) {
+		  
 		this.props.updateData(event.target.value)
 	  }  
 	render(){
 		const listItems = this.props.list.map((i) => 
-			<div>
-				<label><input type="radio" id="male" name="gender" onChange={this.addAnswer} value={i} key={this.props.count} />{i}</label>
+		
+			<div key={i}>
+				<label><input type="radio" id="male" name="gender" onChange={this.addAnswer} value={i} key={this.props.count}/>{i}</label>
 			</div>	
 		)
 		return(
-			<div  > 
-            <h2  >{ this.props.question}</h2>
+			<div className='item'> 
+			<h3>Запитання №{this.props.count}</h3>
+            <h2 >{this.props.question}</h2>
 			<form>
-				{listItems }
+				{listItems}
 			</form>		
 		</div>
 		);

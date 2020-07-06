@@ -1,0 +1,11 @@
+.result {
+    margin: auto;
+    width: 50%;
+    margin-top:15%;
+    text-align: center;
+  }
+
+  .result button {
+      margin-top:40px;
+  }
+  
